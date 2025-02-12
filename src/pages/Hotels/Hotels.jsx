@@ -126,12 +126,12 @@ function Hotels() {
                     {currentCity && currentCity.map((hotel, index) => (
                         <div key={index}>
                             <div
-                                className="flex  pl-2 p-4 rounded-md border-1 border-gray-300 shadow-xl inset-shadow-2xs mt-2 hover:border-blue-600 text-black gap-4 ">
+                                className="flex lg:flex-row flex-col pl-2 p-4 rounded-md border-1 border-gray-300 shadow-xl inset-shadow-2xs mt-2 hover:border-blue-600 text-black gap-4 ">
                                 <NavLink
                                     key={hotel.id}
                                     to={`/detail/${hotel.id}`}
                                 >
-                                    <img src={hotel && hotel?.main_photo ? hotel?.main_photo : "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="" className='h-[200px] w-[200px] rounded-2xl object-cover ' />
+                                    <img src={hotel && hotel?.main_photo ? hotel?.main_photo : "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="" className='w-[100%] h-[300px] lg:h-[200px] lg:w-[200px] rounded-2xl object-cover ' />
                                 </NavLink>
                                 <div className='flex flex-col gap-1'>
                                     <span key={index} className='flex flex-col'>{hotel.name}
