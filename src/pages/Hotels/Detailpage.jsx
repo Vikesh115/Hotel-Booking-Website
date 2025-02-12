@@ -25,9 +25,9 @@ function Detailpage() {
                 <Breadcrumb />
                 <p className='text-white text-4xl pb-2 pl-4'>Hotel in {details?.city}</p>
             </div>
-            <div className='flex ml-18 my-6 items-center gap-3'>
+            <div className='flex lg:flex-row flex-col lg:ml-18 ml-10 my-6 items-center gap-3'>
                 <p className='flex text-2xl font-bold'>{details.name}</p>
-                <div className='flex font-light'><RatingReview rating={details.starRating} /></div>
+                <div className='flex font-light items-start'><RatingReview rating={details.starRating} /></div>
             </div>
             <div className='flex justify-center'>
                 <div className='flex flex-wrap justify-center rounded-4xl pt-4 lg:bg-gray-100 w-[90%] lg:h-screen gap-1 p-1'>
@@ -76,7 +76,7 @@ function Detailpage() {
                         </span>
                         <span>{details.name}</span>
                         <NavLink target='blank' to={`https://www.google.com/search?q=${details.address} + ${details.city}`}
-                            className="hover:text-blue-500 hover:text-2xl"
+                            className="hover:text-blue-500 font-light text-amber-950 hover:text-2xl"
                         >{details.address},{details.city}</NavLink>
                         <span>{details?.hotelImportantInformation?.slice(0, 200)}
                             <NavLink to="/info" className="text-blue-700">
@@ -91,7 +91,7 @@ function Detailpage() {
                     <span className='text-3xl font-bold'>{details.hotelType}</span>
                     <span>{details.name}</span>
                     <NavLink target='blank' to={`https://www.google.com/search?q=${details.address} + ${details.city}`}
-                        className="hover:text-blue-500 hover:text-2xl"
+                        className="hover:text-blue-500 font-bold text-amber-950 hover:text-2xl"
                     >{details.address},{details.city}</NavLink>
                     <span>{details?.hotelImportantInformation?.slice(0, 200)}
                         <NavLink to="/info" className="text-blue-700">
