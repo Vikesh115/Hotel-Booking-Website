@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { FaArrowRight } from "react-icons/fa";
 import Footer from '../Footer/Footer'
 
 function Home() {
@@ -13,7 +14,8 @@ function Home() {
                         <p className='flex lg:text-6xl text-white text-4xl'>
                             DISCOVER THE PINNACLE OF LUXURY
                         </p>
-                        <Link to="/hotel" className='flex lg:text-xl p-2 px-3 text-black bg-amber-400 rounded-4xl font-thin'>Explore more</Link>
+                        <Link to="/hotel" className='flex lg:text-xl p-2 px-3 text-black bg-amber-400 rounded-4xl font-thin items-center gap-2'>Explore more
+                        <FaArrowRight/></Link>
                     </div>
                 </div>
                 <Footer/>
