@@ -14,8 +14,6 @@ function Reviewpage({ id }) {
 
     const { reviews } = useSelector((state) => state.hotels);
 
-    console.log(reviews);
-
     const itemsPerPage = 10;
 
     const reviewTypes = ['All', ...new Set(reviews?.map(review => review.type))];

@@ -13,8 +13,6 @@ function Hotels() {
     const [query, setQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
 
-    console.log(hotels);
-
     useEffect(() => {
         if (query === "") {
             setFilteredItems([]);

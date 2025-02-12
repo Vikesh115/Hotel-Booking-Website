@@ -10,14 +10,11 @@ import RatingReview from '../../Components/RatingReview/RatingReview';
 function Detailpage() {
     const { details } = useSelector((state) => state.hotels)
     const { id } = useParams();
-    console.log(id);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(hoteldetail(id))
     }, [id, dispatch])
-
-    console.log(details);
 
     return (
         <>
