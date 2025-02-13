@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { hotelapi, hoteldetail, hotelreview } from '../actions/Action';
+import { hotelapi, hoteldetail } from '../actions/Action';
 
 const initialState = {
     hotels: [],
-    reviews: [],
+    // reviews: [],
     details: {},
     loading: false,
     error: null
@@ -39,18 +39,18 @@ const hotelSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
-            .addCase(hotelreview.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(hotelreview.fulfilled, (state, action) => {
-                state.loading = false;
-                state.reviews = action.payload;
-            })
-            .addCase(hotelreview.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
-            })
+            // .addCase(hotelreview.pending, (state) => {
+            //     state.loading = true;
+            //     state.error = null;
+            // })
+            // .addCase(hotelreview.fulfilled, (state, action) => {
+            //     state.loading = false;
+            //     state.reviews = action.payload;
+            // })
+            // .addCase(hotelreview.rejected, (state, action) => {
+            //     state.loading = false;
+            //     state.error = action.payload;
+            // })
     },
 });
 
