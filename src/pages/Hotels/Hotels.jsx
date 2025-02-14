@@ -58,10 +58,52 @@ function Hotels() {
             <div className='bg-gradient-to-t from-cyan-950 to-sky-700 text-blue-400'>
                 <Breadcrumb />
                 <p className='text-white text-4xl pb-2 pl-4'>Hotels in India</p>
+                <div className="flex justify-center items-center bg-gradient from-cyan-950 to-sky-700 text-blue-400 pb-4">
+                    <input
+                        type="text"
+                        placeholder="Search hotel"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        className="flex  p-3 font-bold w-[90%] gap-2 border-2 rounded-4xl"
+                    >
+                    </input>
+                </div>
+                <div>
+                    {filteredItems.length > 0 && (
+                        <div className='bg-white text-black mx-4 rounded-2xl'>
+                            <p className='mx-14 mt-4 pt-2'>Result found for {query} {filteredItems.length}</p>
+                            {filteredItems.map((hotel, index) => {
+                                return (
+                                    <div className="mx-12 mt-8 font-bold" key={index}>
+                                        <NavLink
+                                            key={hotel.id}
+                                            to={`/detail/${hotel.id}`}
+                                            className="flex  pl-2 p-4 rounded-md border-1 border-gray-300 shadow-xl inset-shadow-2xs mt-2 hover:border-blue-600 text-black gap-4 ">
+                                            <div>
+                                                <img src={hotel && hotel?.main_photo ? hotel?.main_photo : "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="" className='h-[200px] w-[200px] rounded-2xl object-cover' />
+                                            </div>
+                                            <div className='flex flex-col gap-1'>
+                                                <span key={index} className='flex flex-col'>{hotel.name}
+                                                    <span className='flex flex-row'>
+                                                        <span><RatingReview rating={hotel.stars} /></span>
+                                                        <p>({hotel.reviewCount})</p>
+                                                    </span>
+                                                </span>
+                                                <span className='font-light w-fit rounded-md opacity-25  p-2 border-2'>{hotel.chain}</span>
+                                                <span>{hotel.address}</span>
+                                                <span className='flex text-blue-400 font-medium'>{hotel.city}</span>
+                                            </div>
+                                        </NavLink>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    )}
+                </div>
             </div>
             <div className='bg-white text-black min-h-screen mt-2'>
                 {/* Search */}
-                <div className="flex justify-center items-center ">
+                {/* <div className="flex justify-center items-center ">
                     <input
                         type="text"
                         placeholder="Search hotel"
@@ -102,7 +144,7 @@ function Hotels() {
                             })}
                         </div>
                     )}
-                </div>
+                </div> */}
 
                 {/* filter */}
                 <p className='flex items-center justify-center font-bold text-3xl w-[100%]'>City</p>
