@@ -122,7 +122,7 @@ function Hotels() {
                 </div>
 
                 {/* hotels */}
-                <div className="pl-2 flex flex-col mx-2 mt-2">
+                <div className="px-2 flex flex-col mx-2 mt-2">
                     {currentCity && currentCity.map((hotel, index) => (
                         <div key={index}>
                             <div
