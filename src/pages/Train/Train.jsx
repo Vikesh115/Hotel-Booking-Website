@@ -6,9 +6,11 @@ import { IoLocationSharp } from "react-icons/io5";
 import { CgCalendarDates } from "react-icons/cg";
 import { FaBriefcase } from "react-icons/fa";
 import { FaThLarge } from "react-icons/fa";
+import Holidays from './Holidays';
 
 function Train() {
   return (
+    <>
     <div className="relative h-[640px] w-[100%]">
       <img src="https://www.irctc.co.in/nget/home_page_banner1.e6749c3d9698d1ac7608.jpg" alt="" className='lg:flex hidden h-[640px] w-[100%]' />
 
@@ -72,9 +74,9 @@ function Train() {
           </div>
         </div>
       </div>
-
-      <div className='h-screen bg-white'></div>
     </div>
+    <Holidays/>
+    </>
   )
 }
 
