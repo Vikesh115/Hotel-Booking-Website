@@ -7,21 +7,9 @@ import { CgCalendarDates } from "react-icons/cg";
 import { FaBriefcase } from "react-icons/fa";
 import { FaThLarge } from "react-icons/fa";
 import Holidays from './Holidays';
+import { staticData } from './data';
 
 function Train() {
-
-  const staticData = [
-    { id: 1, from: 'agra', to: 'delhi', class: '1A', birth: 'GENERAL', date: '16/02/2025', train: 'satabdi exp' },
-    { id: 2, from: 'bihar', to: 'haryana', class: '2A', birth: 'TATKAL', date: '17/02/2025', train: 'garib rath' },
-    { id: 3, from: 'chandigarh', to: 'simla', class: '3A', birth: 'DUTY PASS', date: '18/02/2025', train: 'vande bharat' },
-    { id: 4, from: 'delhi', to: 'manali', class: '1A', birth: 'GENERAL', date: '19/02/2025', train: 'kalka-shimla' },
-    { id: 5, from: 'agra', to: 'delhi', class: '1A', birth: 'GENERAL', date: '16/02/2025', train: 'maharaja exp' },
-    { id: 6, from: 'delhi', to: 'manali', class: '1A', birth: 'GENERAL', date: '19/02/2025', train: 'kalka-shimla' },
-    { id: 7, from: 'delhi', to: 'manali', class: '1A', birth: 'GENERAL', date: '19/02/2025', train: 'kalka-shimla' },
-    { id: 8, from: 'delhi', to: 'manali', class: '1A', birth: 'GENERAL', date: '19/02/2025', train: 'kalka shimla' },
-    { id: 9, from: 'delhi', to: 'manali', class: '1A', birth: 'GENERAL', date: '19/02/2025', train: 'kalka-shimla' },
-    { id: 10, from: 'delhi', to: 'manali', class: '1A', birth: 'GENERAL', date: '19/02/2025', train: 'kalka-shimla' },
-  ];
 
   const [searchFields, setSearchFields] = useState({
     from: '',
@@ -40,7 +28,6 @@ function Train() {
   };
 
   const handleSearch = () => {
-    // console.log('enter');
     if (Object.values(searchFields).every((value) => value !== '')) {
       setError('');
       const results = staticData.filter((item) =>
@@ -52,7 +39,6 @@ function Train() {
       );
       setSearchResults(results);
       console.log(results);
-      // console.log('exit');
     } else {
       setError('All fields are required to make a search.');
       setSearchResults([]);
@@ -62,54 +48,6 @@ function Train() {
 
   return (
     <>
-      {/* <div>
-        <input
-          type="text"
-          name="from"
-          placeholder="from"
-          value={searchFields.from}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="to"
-          placeholder="to"
-          value={searchFields.to}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="class"
-          placeholder="class"
-          value={searchFields.class}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="birth"
-          placeholder="birth"
-          value={searchFields.birth}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="date"
-          placeholder="date"
-          value={searchFields.date}
-          onChange={handleInputChange}
-        />
-
-        <button onClick={handleSearch}>Search</button>
-
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {searchResults.length > 0 && (searchResults.map((item) => (
-          <div key={item.id}>
-            <p>{item.train}</p>
-          </div>
-        ))
-        )}
-      </div> */}
-
       <div className="relative h-[640px] w-[100%]">
         <img src="https://www.irctc.co.in/nget/home_page_banner1.e6749c3d9698d1ac7608.jpg" alt="" className='lg:flex hidden h-[640px] w-[100%]' />
 
@@ -209,10 +147,10 @@ function Train() {
             {searchResults?.length > 0 && (searchResults?.map((item) => (
               <div key={item?.id} className='mt-4 '>
                 <p className='text-white bg-black p-4 top-3'>{item?.train}</p>
+                <img src={item?.img} alt={item?.train} className='h-auto w-[100%]'/>
               </div>
             ))
             )}
-
           </div>
         </div>
       </div>
