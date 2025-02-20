@@ -6,6 +6,8 @@ import { IoLocationSharp } from "react-icons/io5";
 import { CgCalendarDates } from "react-icons/cg";
 import { FaBriefcase } from "react-icons/fa";
 import { FaThLarge } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { IoStarSharp } from "react-icons/io5";
 import Holidays from './Holidays';
 import { staticData } from './data';
 
@@ -66,6 +68,7 @@ function Train() {
               <span className='flex items-center'>CHARTS/VACANCY</span>
             </div>
           </div>
+          <Link to="/availtrain" className='flex text-indigo-800 justify-end pr-2 pt-1 underline items-center gap-1'><IoStarSharp/>AVAILABLE TRAINS</Link>
           <div className='flex justify-center mt-12 font-bold text-4xl text-blue-900'>
             <div>BOOK TICKET</div>
           </div>
