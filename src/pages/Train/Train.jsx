@@ -61,14 +61,14 @@ function Train() {
           <div className='lg:flex hidden gap-2 h-[7%] w-[100%]'>
             <div className='flex bg-blue-900 w-[100%] gap-4 text-white'>
               <span className='flex justify-start items-center pl-2'><IoBagCheckOutline size={24} /></span>
-              <span className='flex items-center'>PNR STATUS</span>
+              <span className='flex items-center animate-typing'>PNR STATUS</span>
             </div>
             <div className='flex bg-blue-900 w-[100%] gap-4 text-white'>
               <span className='flex justify-start items-center pl-2'><VscChecklist size={24} /></span>
               <span className='flex items-center'>CHARTS/VACANCY</span>
             </div>
           </div>
-          <Link to="/availtrain" className='flex text-indigo-800 justify-end pr-2 pt-1 underline items-center gap-1'><IoStarSharp/>AVAILABLE TRAINS</Link>
+          <Link to="/availtrain" className='flex text-indigo-800 justify-end pr-2 pt-3 underline items-center gap-1 animate-wiggle hover:animate-none'><IoStarSharp/>AVAILABLE TRAINS</Link>
           <div className='flex justify-center mt-12 font-bold text-4xl text-blue-900'>
             <div>BOOK TICKET</div>
           </div>
