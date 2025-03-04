@@ -52,6 +52,7 @@ function Hotels() {
     }, []); // Empty dependency array ensures this runs only once on mount
 
     const handlefavhotel = (hotel) =>{
+        console.log(hotel);
         const hotelId = hotel.id;
         const hotelName = hotel.name;
         const hotelImg = hotel.main_photo;
