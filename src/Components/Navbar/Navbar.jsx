@@ -49,12 +49,15 @@ function Navbar() {
           <span className='font-thin font-stretch-50% lg:font-stretch-100%'>Buses</span>
         </NavLink>
       </div>
-      <div className='flex items-center py-1 px-3 rounded-sm bg-gradient-to-r from-blue-400 to-blue-600 text-white'>
-        <NavLink onClick={notify}>Blog</NavLink>
-        <ToastContainer
-          position="top-center"
-          theme="dark"
-        />
+      <div className="flex gap-2 items-center">
+        <NavLink to="/fav">Faviorates</NavLink>
+        <div className='flex py-1 px-3 rounded-sm bg-gradient-to-r from-blue-400 to-blue-600 text-white'>
+          <NavLink onClick={notify}>Blog</NavLink>
+          <ToastContainer
+            position="top-center"
+            theme="dark"
+          />
+        </div>
       </div>
     </div>
   )

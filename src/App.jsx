@@ -11,6 +11,7 @@ import Buses from './pages/Buses/Buses';
 import HotelImages from './pages/Hotels/HotelImages';
 import HotelInfo from './pages/Hotels/HotelInfo';
 import AvailableTrains from './pages/Train/AvailableTrains';
+import FavHotels from './pages/Hotels/FavHotels';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path="/hotel" element={<Hotels/>} />
+        <Route path='/fav' element={<FavHotels/>}/>
         <Route path='/train' element={<Train/>} />
         <Route path='/bus' element={<Buses/>} />
         <Route path="/detail/:id" element={<Detailpage/>} />

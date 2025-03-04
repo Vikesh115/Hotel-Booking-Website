@@ -4,7 +4,7 @@ import { hotelapi } from '../../Redux/actions/Action';
 import { NavLink } from 'react-router-dom';
 import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 import RatingReview from '../../Components/RatingReview/RatingReview';
-import { MdPlace } from "react-icons/md";
+import { MdPlace, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 function Hotels() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -12,6 +12,8 @@ function Hotels() {
     const { hotels } = useSelector((state) => state.hotels)
     const [query, setQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
+    const [favorites, setFavorites] = useState([]); // State to track favorites
+
 
     console.log(hotels);
 
@@ -42,6 +44,33 @@ function Hotels() {
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentCity = filteredCity?.slice(startIndex, startIndex + itemsPerPage) || [];
+
+    // Load favorites from localStorage on every render
+    useEffect(() => {
+        const storedFav = JSON.parse(localStorage.getItem('faviorates') || '[]');
+        setFavorites(storedFav);
+    }, []); // Empty dependency array ensures this runs only once on mount
+
+    const handlefavhotel = (hotel) =>{
+        const hotelId = hotel.id;
+        const hotelName = hotel.name;
+        const hotelImg = hotel.main_photo;
+        const hotelFav = JSON.parse(localStorage.getItem('faviorates') || '[]');
+        const hotelIndex = hotelFav.findIndex(b => b.hotelId === hotelId);
+
+            if (hotelIndex >= 0) {
+                hotelFav.splice(hotelIndex, 1);
+            } else {
+                hotelFav.push({ hotelId, hotelName, hotelImg });
+            }
+
+        localStorage.setItem('faviorates', JSON.stringify(hotelFav));
+        setFavorites(hotelFav); // Update state to trigger re-render
+    }
+
+    const isFav = (hotelID) => {
+        return favorites.some(fav => fav.hotelId === hotelID);
+    }
 
     const handlePrevious = () => {
         if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -185,7 +214,14 @@ function Hotels() {
                                     <span className='font-medium w-fit rounded-md opacity-25  p-2 border-2'>{hotel.chain}</span>
                                     <span>{hotel.address}</span>
                                     <span className='flex text-blue-400 items-center font-medium'>
-                                        <MdPlace size={24} />   {hotel.city}</span>
+                                        <MdPlace size={24} />{hotel.city}</span>
+                                    <NavLink onClick={()=>handlefavhotel(hotel)}>
+                                        {isFav(hotel.id) ? (
+                                            <MdFavorite size={30}/>
+                                        ) : (
+                                            <MdFavoriteBorder size={30}/>
+                                        )}
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>
