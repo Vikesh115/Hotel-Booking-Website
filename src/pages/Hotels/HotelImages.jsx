@@ -9,17 +9,14 @@ function HotelImages() {
     return (
         <div>
             <p className='flex text-2xl font-bold justify-center py-6 '>Hotel Images</p>
-            <div>
+            <div className='flex flex-col w-[100%] bg-blue-200'>
                 {details?.hotelImages?.map((image, index) => (
-                    <div key={index} className='flex items-center justify-center gap-4 w-[100%]'>
-                        <div key={index} className='flex items-center justify-center flex-wrap'>
-                            <div className=' p-4 '>
+                        <div key={index} className='flex flex-col h-screen'>
+                            <div  className='flex items-center justify-center p-2 h-full'>
                             <LazyLoadImage src={image?.urlHd}
-                                width={600} height={400}
                                 alt="loading"
-                                className='w-[100%] rounded-4xl'
+                                className='object-cover w-full h-full'
                             />
-                            </div>
                         </div>
                     </div>
                 ))}
