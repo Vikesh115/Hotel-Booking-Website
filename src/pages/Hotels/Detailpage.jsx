@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { hoteldetail } from '../../Redux/actions/Action';
 import { NavLink } from 'react-router-dom';
-// import Reviewpage from './Reviewpage';
 import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 import RatingReview from '../../Components/RatingReview/RatingReview';
 
@@ -97,26 +96,6 @@ function Detailpage() {
                     </span>
                 </div>
             </div>
-            {/* <div className='flex w-[100%] relative h-screen'>
-                <img src={details?.main_photo ? details.main_photo : "https://images.pexels.com/photos/751268/pexels-photo-751268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="" className='absolute inset-0 object-cover w-[100%] h-screen group-hover:opacity-50' />
-                <div className=" pl-5">
-                    <div className="lg:transition-all transform 
-                                translate-y-8 lg:opacity-100 w-[100%]">
-                        <div className="flex gap-2 flex-col">
-                            <p className="flex text-lg text-white">
-                                Welcome to
-                            </p>
-                            <p className='flex text-4xl text-white font-bold'>
-                                {details?.name}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-
-            {/* <div className='flex bg-white text-black flex-col '>
-                <Reviewpage id={id} />
-            </div> */}
         </>
     )
 }

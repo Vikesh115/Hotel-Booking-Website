@@ -9,13 +9,10 @@ import { MdPlace, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 function Hotels() {
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedType, setSelectedType] = useState('All');
-    const { hotels } = useSelector((state) => state.hotels)
+    const { hotels,loading } = useSelector((state) => state.hotels)
     const [query, setQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
-    const [favorites, setFavorites] = useState([]); // State to track favorites
-
-
-    console.log(hotels);
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         if (query === "") {
@@ -45,11 +42,10 @@ function Hotels() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentCity = filteredCity?.slice(startIndex, startIndex + itemsPerPage) || [];
 
-    // Load favorites from localStorage on every render
     useEffect(() => {
         const storedFav = JSON.parse(localStorage.getItem('faviorates') || '[]');
         setFavorites(storedFav);
-    }, []); // Empty dependency array ensures this runs only once on mount
+    }, []); 
 
     const handlefavhotel = (hotel) =>{
         console.log(hotel);
@@ -66,7 +62,7 @@ function Hotels() {
             }
 
         localStorage.setItem('faviorates', JSON.stringify(hotelFav));
-        setFavorites(hotelFav); // Update state to trigger re-render
+        setFavorites(hotelFav);
     }
 
     const isFav = (hotelID) => {
@@ -82,6 +78,12 @@ function Hotels() {
     };
 
     const cityTypes = ['All', ...new Set(hotels?.map(hotel => hotel.city))];
+
+    if(loading){
+        return(
+            <div className='flex justify-center items-center h-screen w-[100%] text-black'>loading...</div>
+        )
+    }
 
     return (
         <>
@@ -132,51 +134,6 @@ function Hotels() {
                 </div>
             </div>
             <div className='bg-white text-black min-h-screen mt-2'>
-                {/* Search */}
-                {/* <div className="flex justify-center items-center ">
-                    <input
-                        type="text"
-                        placeholder="Search hotel"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        className="flex  p-3 font-bold w-[90%] gap-2 border-2 rounded-4xl"
-                    >
-                    </input>
-                </div>
-                <div>
-                    {filteredItems.length > 0 && (
-                        <div>
-                            <p className='mx-14 mt-4'>Result found for {query} {filteredItems.length}</p>
-                            {filteredItems.map((hotel, index) => {
-                                return (
-                                    <div className="mx-12 mt-8 font-bold" key={index}>
-                                        <NavLink
-                                            key={hotel.id}
-                                            to={`/detail/${hotel.id}`}
-                                            className="flex  pl-2 p-4 rounded-md border-1 border-gray-300 shadow-xl inset-shadow-2xs mt-2 hover:border-blue-600 text-black gap-4 ">
-                                            <div>
-                                                <img src={hotel && hotel?.main_photo ? hotel?.main_photo : "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="" className='h-[200px] w-[200px] rounded-2xl object-cover' />
-                                            </div>
-                                            <div className='flex flex-col gap-1'>
-                                                <span key={index} className='flex flex-col'>{hotel.name}
-                                                    <span className='flex flex-row'>
-                                                        <span><RatingReview rating={hotel.stars} /></span>
-                                                        <p>({hotel.reviewCount})</p>
-                                                    </span>
-                                                </span>
-                                                <span className='font-light w-fit rounded-md opacity-25  p-2 border-2'>{hotel.chain}</span>
-                                                <span>{hotel.address}</span>
-                                                <span className='flex text-blue-400 font-medium'>{hotel.city}</span>
-                                            </div>
-                                        </NavLink>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    )}
-                </div> */}
-
-                {/* filter */}
                 <p className='flex items-center justify-center font-bold text-3xl w-[100%]'>City</p>
                 <div className="flex justify-center">
                     <select
@@ -193,7 +150,6 @@ function Hotels() {
                     </select>
                 </div>
 
-                {/* hotels */}
                 <div className="px-2 flex flex-col mx-2 mt-2">
                     {currentCity && currentCity.map((hotel, index) => (
                         <div key={index}>
@@ -229,7 +185,6 @@ function Hotels() {
                     ))}
                 </div>
 
-                {/* pagination */}
                 <div className="flex justify-center flex-wrap items-center mt-6 w-[100%] p-2 gap-2">
                     <button
                         className={`px-4 py-2 rounded transition ${currentPage === 1 ? 'bg-gray-800 text-white cursor-not-allowed' : 'bg-blue-500 text-black hover:bg-blue-600'}`}
