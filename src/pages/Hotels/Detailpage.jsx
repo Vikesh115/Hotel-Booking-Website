@@ -7,13 +7,19 @@ import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 import RatingReview from '../../Components/RatingReview/RatingReview';
 
 function Detailpage() {
-    const { details } = useSelector((state) => state.hotels)
+    const { details, loading } = useSelector((state) => state.hotels)
     const { id } = useParams();
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(hoteldetail(id))
     }, [id, dispatch])
+
+    if(loading){
+        return(
+            <div className='flex justify-center items-center h-screen w-[100%] text-black'>loading...</div>
+        )
+    }
 
     return (
         <>

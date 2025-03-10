@@ -4,8 +4,13 @@ import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 
 function HotelInfo() {
 
-  const { details } = useSelector((state) => state.hotels)
+  const { details, loading } = useSelector((state) => state.hotels)
 
+  if(loading){
+    return(
+        <div className='flex justify-center items-center h-screen w-[100%] text-black'>loading...</div>
+    )
+}
 
   return (
     <>
