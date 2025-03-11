@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 import RatingReview from '../../Components/RatingReview/RatingReview';
 import { MdPlace, MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { debounce } from 'lodash';
 
 function Hotels() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -12,25 +13,37 @@ function Hotels() {
     const { hotels,loading } = useSelector((state) => state.hotels)
     const [query, setQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
-    const [favorites, setFavorites] = useState([]);
+    const [searchloading, setSearchloading] = useState(false)
 
-    useEffect(() => {
-        if (query === "") {
-            setFilteredItems([]);
-        }
-        else {
-            const filtered = hotels.filter(item =>
-                item.city.toLowerCase().includes(query.toLowerCase())
-            );
-            setFilteredItems(filtered);
-        }
-    }, [hotels, query]);
+    const [favorites, setFavorites] = useState([]);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(hotelapi())
     }, [dispatch])
+
+    const debouncedSearch = debounce((searchQuery) => {
+        setSearchloading(true);
+        if (searchQuery === "") {
+            setFilteredItems([]);
+            setSearchloading(false);
+        } else {
+            setSearchloading(true)
+            const lowercasequery = searchQuery.toLowerCase()
+            const filtered = hotels.filter(item =>
+                item.city.toLowerCase().includes(lowercasequery) ||
+                item.name.toLowerCase().includes(lowercasequery)
+            );
+            setFilteredItems(filtered);
+            setTimeout(() => setSearchloading(false), 500); 
+        }
+    }, 1000);
+
+    useEffect(() => {
+        debouncedSearch(query);
+        return () => debouncedSearch.cancel();
+    }, [query, hotels]);
 
     const itemsPerPage = 10;
 
@@ -85,6 +98,17 @@ function Hotels() {
         )
     }
 
+    if (searchloading) {
+        return (
+            <div className='flex flex-row justify-center items-center h-screen'>
+                <div className='flex'>
+                    searching...
+                </div>
+                <div className='flex animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500'></div>
+            </div>
+        );
+    }
+
     return (
         <>
             <div className='bg-gradient-to-t from-cyan-950 to-sky-700 text-blue-400'>
@@ -93,7 +117,7 @@ function Hotels() {
                 <div className="flex justify-center items-center bg-gradient from-cyan-950 to-sky-700 text-blue-400 pb-4">
                     <input
                         type="text"
-                        placeholder="Search hotel"
+                        placeholder="Search hotel by city or name"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         className="flex  p-3 font-bold w-[90%] gap-2 border-2 rounded-4xl"
