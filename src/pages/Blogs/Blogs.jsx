@@ -3,16 +3,29 @@ import axios from 'axios'
 import Footer from '../Footer/Footer'
 
 function Blogs() {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchNewsApi = async () => {
       const response = await axios.get("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=0aa8469f320f42629cf42f9e592b82f1")
       console.log(response?.data?.articles);
       setData(response?.data?.articles);
+      setLoading(false);
     }
     fetchNewsApi()
   }, [])
+
+  if(loading){
+    return (
+      <div className='flex flex-row justify-center items-center h-screen'>
+          <div className='flex'>
+              loading...
+          </div>
+          <div className='flex animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500'></div>
+      </div>
+  );
+  }
 
   return (
     <>

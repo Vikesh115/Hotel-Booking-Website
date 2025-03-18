@@ -93,9 +93,14 @@ function Hotels() {
     const cityTypes = ['All', ...new Set(hotels?.map(hotel => hotel.city))];
 
     if(loading){
-        return(
-            <div className='flex justify-center items-center h-screen w-[100%] text-black'>loading...</div>
-        )
+            return (
+                <div className='flex flex-row justify-center items-center h-screen'>
+                    <div className='flex'>
+                        loading...
+                    </div>
+                    <div className='flex animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500'></div>
+                </div>
+            );
     }
 
     if (searchloading) {
