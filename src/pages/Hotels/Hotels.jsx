@@ -198,9 +198,9 @@ function Hotels() {
                                         <MdPlace size={24} />{hotel.city}</span>
                                     <NavLink onClick={()=>handlefavhotel(hotel)}>
                                         {isFav(hotel.id) ? (
-                                            <MdFavorite size={30}/>
+                                            <MdFavorite size={30} color='red'/>
                                         ) : (
-                                            <MdFavoriteBorder size={30}/>
+                                            <MdFavoriteBorder size={30} color='blue'/>
                                         )}
                                     </NavLink>
                                 </div>
