@@ -12,6 +12,7 @@ import HotelImages from './pages/Hotels/HotelImages';
 import HotelInfo from './pages/Hotels/HotelInfo';
 import AvailableTrains from './pages/Train/AvailableTrains';
 import FavHotels from './pages/Hotels/FavHotels';
+import Blogs from './pages/Blogs/Blogs';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/imagelist' element={<HotelImages/>} />
         <Route path="/info" element={<HotelInfo/>}/>
         <Route path='/availtrain' element={<AvailableTrains/>}/>
+        <Route path='/blog' element={<Blogs/>}/>
       </Routes>
     </>
   )

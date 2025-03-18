@@ -52,7 +52,7 @@ function Navbar() {
       <div className="flex gap-2 items-center">
         <NavLink to="/fav">Faviorates</NavLink>
         <div className='flex py-1 px-3 rounded-sm bg-gradient-to-r from-blue-400 to-blue-600 text-white'>
-          <NavLink onClick={notify}>Blog</NavLink>
+          <NavLink to='/blog'>Blog</NavLink>
           <ToastContainer
             position="top-center"
             theme="dark"
