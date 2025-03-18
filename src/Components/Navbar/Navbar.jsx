@@ -2,10 +2,10 @@ import { RiHotelLine } from "react-icons/ri";
 import { SiRailway } from "react-icons/si";
 import { FaBus } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
+import { MdFavorite } from "react-icons/md";
 
 function Navbar() {
-  const notify = () => toast("Upcomming!!!");
 
   return (
     <div className='flex w-[100%] h-[6%] justify-evenly items-center shadow-2xl py-4'>
@@ -50,7 +50,7 @@ function Navbar() {
         </NavLink>
       </div>
       <div className="flex gap-2 items-center">
-        <NavLink to="/fav">Faviorates</NavLink>
+        <NavLink to="/fav"><MdFavorite size={32} color="red"/></NavLink>
         <div className='flex py-1 px-3 rounded-sm bg-gradient-to-r from-blue-400 to-blue-600 text-white'>
           <NavLink to='/blog'>Blog</NavLink>
           <ToastContainer
