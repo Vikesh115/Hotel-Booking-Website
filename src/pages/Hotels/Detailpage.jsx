@@ -8,7 +8,7 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import Facility from './facility/Facility';
 import Type from './rooms/Type';
 import Footer from './footer/Footer';
-import Details from './Home/Details';
+import Details from './home/Details';
 
 function Detailpage() {
     const { details, loading } = useSelector((state) => state.hotels)
