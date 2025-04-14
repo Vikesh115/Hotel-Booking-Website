@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Footer from './footer/Footer';
 
 function HotelImages() {
 
@@ -21,6 +22,7 @@ function HotelImages() {
                     </div>
                 ))}
             </div>
+            <Footer/>
         </div>
     )
 }

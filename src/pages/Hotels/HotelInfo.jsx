@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
+import Footer from './footer/Footer';
 
 function HotelInfo() {
 
@@ -25,7 +26,9 @@ function HotelInfo() {
           </span>
           <p className='flex text-base'>{details.hotelImportantInformation}</p>
         </div>
-      </div></>
+      </div>
+      <Footer/>
+      </>
   )
 }
 
