@@ -6,9 +6,9 @@ import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 import RatingReview from '../../Components/RatingReview/RatingReview';
 import { FaRegThumbsUp } from "react-icons/fa";
 import Facility from './facility/Facility';
-import Details from './Home/details';
 import Type from './rooms/Type';
 import Footer from './footer/Footer';
+import Details from './Home/details';
 
 function Detailpage() {
     const { details, loading } = useSelector((state) => state.hotels)
@@ -20,11 +20,11 @@ function Detailpage() {
         dispatch(hoteldetail(id))
     }, [id, dispatch])
 
-    // if (loading) {
-    //     return (
-    //         <div className='flex justify-center items-center h-screen w-[100%] text-black'>loading...</div>
-    //     )
-    // }
+    if (loading) {
+        return (
+            <div className='flex justify-center items-center h-screen w-[100%] text-black'>loading...</div>
+        )
+    }
 
     return (
         <>
