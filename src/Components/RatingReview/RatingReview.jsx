@@ -10,7 +10,7 @@ function RatingReview({ rating }) {
                         className='start'
                         style={{
                             cursor: 'pointer',
-                            color: rating >= star ? 'black' : 'gray',
+                            color: rating >= star ? '#ffb700' : 'gray',
                             fontSize: `15px`,
                         }}
                     >
