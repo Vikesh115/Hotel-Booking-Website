@@ -7,6 +7,7 @@ import RatingReview from '../../Components/RatingReview/RatingReview';
 import { MdPlace, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { debounce } from 'lodash';
 import Index from './pagination/Index';
+import Footer from './footer/Footer';
 
 function Hotels() {
     const [selectedType, setSelectedType] = useState('All');
@@ -205,6 +206,7 @@ function Hotels() {
 
                 {/* Pagination */}
                 <Index totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                <Footer/>
             </div>
         </>
     )
