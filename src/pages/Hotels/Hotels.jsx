@@ -6,7 +6,7 @@ import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 import RatingReview from '../../Components/RatingReview/RatingReview';
 import { MdPlace, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { debounce } from 'lodash';
-import Index from './pagination';
+import Index from './pagination/Index';
 
 function Hotels() {
     const [selectedType, setSelectedType] = useState('All');
