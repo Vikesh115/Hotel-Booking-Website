@@ -33,7 +33,7 @@ function Detailpage() {
                 <p className='text-white text-4xl pb-2 pl-4'>Hotel in {details?.city}</p>
             </div>
             
-            <div className='flex lg:flex-row flex-col lg:ml-18 ml-10 mt-6'>
+            <div className='flex flex-col lg:ml-18 ml-10 mt-6'>
                 <div className='flex flex-row gap-2 items-center font-light'>
                     <RatingReview rating={details?.starRating} />
                     <FaRegThumbsUp className='bg-yellow-200 p-1' size={20}/>
