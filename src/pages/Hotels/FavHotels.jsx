@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useState } from 'react'
 function FavHotels() {
     const storedFav = useMemo(() => JSON.parse(localStorage.getItem('faviorates') || '[]'),[]);
     console.log(storedFav);
-
     const [query, setQuery] = useState('');
     const [searchresults, setSearchresults] = useState(storedFav);
 
