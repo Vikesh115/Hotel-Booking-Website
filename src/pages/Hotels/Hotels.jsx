@@ -6,16 +6,23 @@ import Breadcrumb from '../../Components/BreadCrumb/BreadCrumb';
 import RatingReview from '../../Components/RatingReview/RatingReview';
 import { MdPlace, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { debounce } from 'lodash';
+import Index from './pagination';
 
 function Hotels() {
-    const [currentPage, setCurrentPage] = useState(1);
     const [selectedType, setSelectedType] = useState('All');
     const { hotels,loading } = useSelector((state) => state.hotels)
     const [query, setQuery] = useState('');
     const [filteredItems, setFilteredItems] = useState([]);
     const [searchloading, setSearchloading] = useState(false)
-
     const [favorites, setFavorites] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const filteredCity = selectedType === 'All' ? hotels : hotels?.filter(hotel => hotel.city === selectedType);
+    const itemsPerPage = 10;
+    const totalItems = filteredCity?.length || 0;
+    const totalPages = totalItems > 0 ? Math.ceil(totalItems / itemsPerPage) : 0;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentCity = filteredCity?.slice(startIndex, startIndex + itemsPerPage) || [];
 
     const dispatch = useDispatch();
 
@@ -43,17 +50,7 @@ function Hotels() {
     useEffect(() => {
         debouncedSearch(query);
         return () => debouncedSearch.cancel();
-    }, [query, hotels]);
-
-    const itemsPerPage = 10;
-
-    const filteredCity = selectedType === 'All' ? hotels : hotels?.filter(hotel => hotel.city === selectedType);
-
-    const totalItems = filteredCity?.length || 0;
-    const totalPages = totalItems > 0 ? Math.ceil(totalItems / itemsPerPage) : 0;
-
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentCity = filteredCity?.slice(startIndex, startIndex + itemsPerPage) || [];
+    }, [debouncedSearch, query, hotels]);
 
     useEffect(() => {
         const storedFav = JSON.parse(localStorage.getItem('faviorates') || '[]');
@@ -81,14 +78,6 @@ function Hotels() {
     const isFav = (hotelID) => {
         return favorites.some(fav => fav.hotelId === hotelID);
     }
-
-    const handlePrevious = () => {
-        if (currentPage > 1) setCurrentPage(currentPage - 1);
-    };
-
-    const handleNext = () => {
-        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-    };
 
     const cityTypes = ['All', ...new Set(hotels?.map(hotel => hotel.city))];
 
@@ -214,32 +203,8 @@ function Hotels() {
                     ))}
                 </div>
 
-                <div className="flex justify-center flex-wrap items-center mt-6 w-[100%] p-2 gap-2">
-                    <button
-                        className={`px-4 py-2 rounded transition ${currentPage === 1 ? 'bg-gray-800 text-white cursor-not-allowed' : 'bg-blue-500 text-black hover:bg-blue-600'}`}
-                        onClick={handlePrevious}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </button>
-
-                    {[...Array(totalPages)].map((_, index) => (
-                        <NavLink
-                            key={index}
-                            className={`px-4 p-1 md:py-2 rounded transition text-black ${currentPage === index + 1 ? 'hidden md:flex bg-blue-500 text-black' : 'hidden md:flex text-white bg-gray-800 hover:bg-gray-300'}`}
-                            onClick={() => setCurrentPage(index + 1)}
-                        >
-                            {index + 1}
-                        </NavLink>
-                    ))}
-                    <button
-                        className={`px-4 py-2 rounded transition ${currentPage === totalPages ? 'bg-gray-800 text-white cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
-                        onClick={handleNext}
-                        disabled={currentPage === totalPages}
-                    >
-                        Next
-                    </button>
-                </div>
+                {/* Pagination */}
+                <Index totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
             </div>
         </>
     )
