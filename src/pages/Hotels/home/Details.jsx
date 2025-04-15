@@ -62,7 +62,8 @@ function Details() {
                     </span>
                 </div>
             </div>
-        </div>)
+        </div>
+        )
 }
 
 export default Details
