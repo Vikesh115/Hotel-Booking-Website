@@ -12,7 +12,6 @@ import Details from './home/Details';
 
 function Detailpage() {
     const { details, loading } = useSelector((state) => state.hotels)
-    console.log(details);
     const { id } = useParams();
     const dispatch = useDispatch();
 

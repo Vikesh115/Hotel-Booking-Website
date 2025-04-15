@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { GiPlayButton } from "react-icons/gi";
 import { Link } from 'react-router-dom';
@@ -12,7 +11,7 @@ function Type() {
             <div>
                 {details?.rooms?.map((room, index) => (
                     <div key={index} className='flex flex-col p-2 border-1'>
-                        <Link className='flex items-center'>
+                        <Link to={`/roomdetail/${room.id}`} className='flex items-center'>
                             <GiPlayButton className='text-lime-500'/>
                             <p className='text-blue-700 underline'>{room?.roomName}</p>
                         </Link>
@@ -20,6 +19,7 @@ function Type() {
                     </div>
                 ))}
             </div>
+            
         </div>
     )
 }
