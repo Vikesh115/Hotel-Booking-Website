@@ -51,7 +51,7 @@ function Hotels() {
     useEffect(() => {
         debouncedSearch(query);
         return () => debouncedSearch.cancel();
-    }, [debouncedSearch, query, hotels]);
+    }, [query]);
 
     useEffect(() => {
         const storedFav = JSON.parse(localStorage.getItem('faviorates') || '[]');
