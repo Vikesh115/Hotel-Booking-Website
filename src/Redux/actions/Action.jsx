@@ -9,7 +9,7 @@ export const hotelapi = createAsyncThunk(
                 const response  = await axios.get("https://api.liteapi.travel/v3.0/data/hotels?countryCode=IN",{
                 headers: {
                     accept: "application/json",
-                    'X-API-Key': 'sand_822c6ced-1c4e-4a60-93e2-2c83129e69d1',
+                    'X-API-Key': import.meta.env.VITE_API_KEY,
                 }
             })
             return response?.data?.data;
@@ -27,7 +27,7 @@ export const hoteldetail = createAsyncThunk(
             const response = await axios.get(`https://api.liteapi.travel/v3.0/data/hotel?hotelId=${id}&timeout=4`,{
                 headers: {
                     accept: 'application/json',
-                    'X-API-Key': 'sand_822c6ced-1c4e-4a60-93e2-2c83129e69d1'
+                    'X-API-Key': import.meta.env.VITE_API_KEY,
                 }
             })
             return response?.data?.data;
